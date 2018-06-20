@@ -1,10 +1,12 @@
 package com.company;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
-        GUI firstGUI = new GUI();
-        firstGUI.runGUI();
+        GUI gui = new GUI();
+        gui.runGUI();
     }
 }

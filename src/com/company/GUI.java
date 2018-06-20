@@ -67,13 +67,13 @@ public class GUI implements UI{
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }
-        screen.clear();
+       /* screen.clear();
         Attack bullet = new Attack(int posx, int posy);
         KeyStroke keyPressed;
-        
+
         keyPressed = terminal.pollInput();
 
         if (keyPressed.getKeyType() == KeyType.F1){
-            screen.setpo();
+            screen.setpo();*/
     }
 }

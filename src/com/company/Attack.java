@@ -27,11 +27,15 @@ public class Attack{
     public Attack(int posx, int posy) {             //constructor
         this.posx = posx;
         this.posy = posy;
-        System.out.print(posx + “” + posy);
+        System.out.println(posx + “” + posy);
 
     }
 
+    Attack bullet = new Attack(int posx, int posy);
+    KeyStroke keyPressed;
 
+           if (keyPressed.getKeyType() == KeyType.F1){
+        screen.setbullet();
 
 
 

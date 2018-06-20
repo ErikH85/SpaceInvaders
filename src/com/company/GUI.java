@@ -67,12 +67,12 @@ public class GUI implements UI{
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
-            if(r.nextInt(100) > 95) {
+            if(r.nextInt(1000) > 990) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
             }
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
-                    f.y += 0.03;
+                    f.y += 0.04;
                 }
                 TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);

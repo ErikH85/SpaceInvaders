@@ -1,6 +1,8 @@
 package com.company;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -12,6 +14,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
@@ -47,14 +50,38 @@ public class GUI implements UI{
         List<Attack> bullets= new ArrayList<>();
 
         KeyStroke keyPressed;
+        TerminalSize size = terminal.getTerminalSize();
 
-        while(true){
+        List<Enemy> enemies = new ArrayList<>();
+        Random r = new Random();
+        for (int i = 0; i < 8; i++) {
+            enemies.add(new Enemy(r.nextInt(size.getColumns()-1),0));
+        }
+        boolean runs=true;
+
+        while(runs){
             screen.clear();
 
             TextGraphics tGraphics = screen.newTextGraphics();
             tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
+
+            if(r.nextInt(100) > 95) {
+                enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
+            }
+            for (Enemy f : enemies) {
+                if (f.y <= size.getRows()) {
+                    f.y += 0.03;
+                }
+                TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
+                screen.setCharacter(f.getX(), f.getYint(), enemy);
+                if (f.getYint() == 23){
+                    TextGraphics tGraph = screen.newTextGraphics();
+                    tGraph.putString(35, 10, "Game Over");
+                    runs=false;
+                }
+            }
 
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {

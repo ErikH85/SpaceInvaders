@@ -67,7 +67,7 @@ public class GUI implements UI{
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
-            if(r.nextInt(1000) > 990) {
+            if(r.nextInt(1000) > 980) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
             }
             for (Enemy f : enemies) {

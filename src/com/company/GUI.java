@@ -91,6 +91,7 @@ public class GUI implements UI{
                     player.setX(player.getX() -1);
                 }else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' '){
                     bullets.add(new Attack(player.getX(), player.getY()-1));
+                    bullets.add(new Attack(player.getX(), player.getY()-2));
                 }
             }
 

@@ -47,5 +47,8 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 .idea/workspace.xml___jb_tmp___
+
+# osx
+.DS_Store
 *.xml
 .idea/misc.xml

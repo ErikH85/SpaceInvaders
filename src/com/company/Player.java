@@ -5,13 +5,8 @@ public class Player {
     private boolean playerAlive;
 
     public Player(int x, int y, int hp) {
-
-        if(x > 0 && x < 79){
-            this.x = x;
-        }
-
+        this.x = x;
         this.y = y;
-
         this.hp = hp;
     }
 

@@ -5,7 +5,10 @@ public class Player {
     private boolean playerAlive;
 
     public Player(int x, int y, int hp) {
-        this.x = x;
+
+        if(x > 0 && x < 79){
+            this.x = x;
+        }
 
         this.y = y;
 
@@ -16,8 +19,10 @@ public class Player {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(int x){
+        if(x > 0 && x < 79){
         this.x = x;
+        }
     }
 
     public int getY() {

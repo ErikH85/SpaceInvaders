@@ -10,9 +10,12 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
+import static com.googlecode.lanterna.TextColor.ANSI.YELLOW;
 
 public class GUI implements UI{
 
@@ -41,6 +44,7 @@ public class GUI implements UI{
 
         screen.clear();
         Player player = new Player(40, 23, 3, 100, 0);
+        List<Attack> bullets= new ArrayList<>();
 
         KeyStroke keyPressed;
 
@@ -54,26 +58,41 @@ public class GUI implements UI{
 
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
+                System.out.println(keyPressed);
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
                     player.setX(player.getX() + 1);
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
                     player.setX(player.getX() -1);
+                }else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' '){
+                    bullets.add(new Attack(player.getX(), player.getY()-1));
                 }
             }
 
             TextCharacter playerChar = new TextCharacter('\u25B2').withForegroundColor(GREEN);
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
+            for (Attack bullet: bullets) {
+                bullet.setPosy(bullet.getPosy()-1);
+                screen.setCharacter(bullet.getPosx(),bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
+                /*for(Enemy e:enemies) {
+                    if(bullet.getPosx() == e.getPosx() && bullet.getPosy() == e.getPosy) {
+                        enemies.remove(e);
+                    }
+                }*/
+            }
+
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }
-       /* screen.clear();
+
+
+        /* screen.clear();
         Attack bullet = new Attack(int posx, int posy);
         KeyStroke keyPressed;
 
         keyPressed = terminal.pollInput();
 
-        if (keyPressed.getKeyType() == KeyType.F1){
+        if {
             screen.setpo();*/
     }
 }

@@ -32,16 +32,19 @@ public class Attack{
 
     }
 
-    Attack bullet = new Attack(int posx, int posy);
-    KeyStroke keyPressed;
+    public char getBullet() {
+        return bullet;
+    }
 
-           if (keyPressed.getKeyType() == KeyType.F1){
-        screen.setbullet();
+    public int getPosx() {
+        return posx;
+    }
 
+    public int getPosy() {
+        return posy;
+    }
 
-
-
-   /*posx = player.getX;
+    /*posx = player.getX;
    posy = (player.getY)-1;
    System.out.print(posx,posy);
 

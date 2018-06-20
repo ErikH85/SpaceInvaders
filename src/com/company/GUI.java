@@ -85,7 +85,6 @@ public class GUI implements UI{
 
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
-                System.out.println(keyPressed);
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
                     player.setX(player.getX() + 1);
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {

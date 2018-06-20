@@ -27,9 +27,6 @@ public class Attack{
     public Attack(int posx, int posy) {             //constructor
         this.posx = posx;
         this.posy = posy;
-
-        System.out.print(posx + "" + posy);
-
     }
 
     public char getBullet() {

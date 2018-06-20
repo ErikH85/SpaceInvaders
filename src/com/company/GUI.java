@@ -1,6 +1,7 @@
 package com.company;
 
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -39,12 +40,17 @@ public class GUI implements UI{
         }
 
         screen.clear();
-        Player player = new Player(40, 23, 100);
+        Player player = new Player(40, 23, 3, 100, 0);
 
         KeyStroke keyPressed;
 
         while(true){
             screen.clear();
+
+            TextGraphics tGraphics = screen.newTextGraphics();
+            tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
+            tGraphics.putString(70, 1, "HP:" + player.getHp());
+            tGraphics.putString(70, 2, "Score:" + player.getScore());
 
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {

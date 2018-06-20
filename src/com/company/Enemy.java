@@ -3,24 +3,23 @@ package com.company;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Enemy {
     int x;
-    int y;
+    double y;
     int hp;
     List<Enemy> enemies = new ArrayList<>();
 
     public Enemy() {
     }
 
-    public Enemy(int x, int y) {
+    public Enemy(int x, double y) {
         this.x = x;
         this.y = y;
         this.hp = 100;
     }
 
-    public Enemy(int x, int y, int hp) {
+    public Enemy(int x, double y, int hp) {
         this.x = x;
         this.y = y;
         this.hp = hp;
@@ -34,11 +33,14 @@ public class Enemy {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
+    public int getYint (){
+        return (int)y;
+    }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 

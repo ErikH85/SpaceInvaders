@@ -50,3 +50,5 @@ fabric.properties
 
 # osx
 .DS_Store
+*.xml
+.idea/misc.xml

@@ -17,9 +17,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
-import static com.googlecode.lanterna.TextColor.ANSI.RED;
-import static com.googlecode.lanterna.TextColor.ANSI.YELLOW;
+import static com.googlecode.lanterna.TextColor.ANSI.*;
 
 public class GUI implements UI {
 
@@ -77,14 +75,14 @@ public class GUI implements UI {
                 }
             }
             for (Enemy f : enemies) {
-                if (r.nextInt(1000) > 998) {
+                if (r.nextInt(1000) > 997) {
                     ebullets.add(new EnemyAttack(f.getX(),f.getYint() +1));
                 }
 
             }
             for (EnemyAttack ebullet : ebullets) {
                 ebullet.setPy(ebullet.getPy() + 1);
-                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(RED));
+                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(WHITE));
             }
 
             TextGraphics tGraphics = screen.newTextGraphics();
@@ -154,7 +152,7 @@ public class GUI implements UI {
 
                         player.setScore(player.getScore() +10);
                         if (player.getScore()% 200==0) {
-                            setlvl -= 30;
+                            setlvl -= 5;
                         }
                     }
                 }

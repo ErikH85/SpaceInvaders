@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class EnemyAttack{
 
-    char Ebullet= '\u058D';                           //assignar | till “bullet”
+    char Ebullet= '\u25CF';                           //assignar | till “bullet”
 
     private int px;
     private int py;

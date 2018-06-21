@@ -130,10 +130,8 @@ public class GUI implements UI {
                 }
                 enemies.removeAll(enemiesToRemove);
             }
-<<<<<<< HEAD
             bullets.removeAll(bulletsToRemove);
             /*{  List<Player> ToRemove = new ArrayList<>();
-=======
             /*{
 
             Enemy ska ha bullets.
@@ -145,7 +143,6 @@ public class GUI implements UI {
 
 
             List<Player> ToRemove = new ArrayList<>();
->>>>>>> 2aa380e1b9f5e9b15434881454381bda25f01612
 
                 for (Attack bullet: bullets) {
                     bullet.setYint(bullet.getYint()-1);

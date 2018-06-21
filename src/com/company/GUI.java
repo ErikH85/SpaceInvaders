@@ -74,7 +74,7 @@ public class GUI implements UI{
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;
                 }
-                TextCharacter enemy = new TextCharacter('\u2665').withForegroundColor(new TextColor.RGB(255, 0, 0));
+                TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
                 if (f.getYint() == 23){
                     TextGraphics tGraph = screen.newTextGraphics();

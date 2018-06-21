@@ -135,7 +135,11 @@ public class GUI implements UI {
             enemies.removeAll(enemiesRemoveBottom);
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
-                if (keyPressed.getKeyType() == KeyType.ArrowRight) {
+                if (keyPressed.getKeyType() == KeyType.ArrowRight && keyPressed.isCtrlDown()) {
+                    player.setX(player.getX() + 5);
+                } else if (keyPressed.getKeyType() == KeyType.ArrowLeft && keyPressed.isCtrlDown()) {
+                    player.setX(player.getX() - 5);
+                } else if (keyPressed.getKeyType() == KeyType.ArrowRight) {
                     player.setX(player.getX() + 1);
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
                     player.setX(player.getX() - 1);

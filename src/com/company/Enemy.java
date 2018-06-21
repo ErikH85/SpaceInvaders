@@ -1,17 +1,59 @@
+
+
 package com.company;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Enemy {
     int x;
     double y;
     int hp;
-    List<Enemy> enemies = new ArrayList<>();
 
-    public Enemy() {
+
+    private boolean normal;
+    private boolean hit;
+    private boolean destroyed;
+
+    private enum AvailableStates{
+        NORMAL,
+        HIT,
+        DESTROYED;
     }
+
+    AvailableStates state = AvailableStates.NORMAL;
+
+    public void changeState(){
+        switch (state) {
+            case NORMAL:
+                state = AvailableStates.HIT;
+                normal = true;
+                hit = false;
+                destroyed = false;
+                break;
+            case HIT:
+                state = AvailableStates.DESTROYED;
+                normal = false;
+                hit = true;
+                destroyed = false;
+                break;
+            case DESTROYED:
+                normal = false;
+                hit = false;
+                destroyed = true;
+                break;
+        }
+    }
+
+    public boolean isNormal() {
+        return normal;
+    }
+    public boolean isHit() {
+        return hit;
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+
 
     public Enemy(int x, double y) {
         this.x = x;

@@ -3,6 +3,7 @@ package com.company;
 public class Player {
     private int x, y, life, hp, score;
     private boolean playerAlive;
+    private String name;
 
     public Player(int x, int y, int life, int hp, int score) {
         this.x = x;
@@ -61,5 +62,13 @@ public class Player {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

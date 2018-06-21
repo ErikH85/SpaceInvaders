@@ -49,6 +49,7 @@ public class GUI implements UI {
         screen.clear();
         Player player = new Player(40, 23, 10, 100, 0);
         List<Attack> bullets = new ArrayList<>();
+        List<EnemyAttack> ebullets = new ArrayList<>();
 
         KeyStroke keyPressed;
         TerminalSize size = terminal.getTerminalSize();

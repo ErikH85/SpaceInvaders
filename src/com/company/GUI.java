@@ -129,7 +129,17 @@ public class GUI implements UI {
                 }
                 enemies.removeAll(enemiesToRemove);
             }
-            /*{  List<Player> ToRemove = new ArrayList<>();
+            /*{
+
+            Enemy ska ha bullets.
+            Enemy ska kunna skjuta bullets.
+            Enemy ska skjuta en åt gången med lagom intervall.
+            Vilken enemy som ska skjuta avgörs genom random rand.
+            Enemys bullets ska vara RED.
+            Om enemy bullets pos = player = player (!alive)
+
+
+            List<Player> ToRemove = new ArrayList<>();
 
                 for (Attack bullet: bullets) {
                     bullet.setYint(bullet.getYint()-1);

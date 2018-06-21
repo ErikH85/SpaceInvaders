@@ -46,26 +46,20 @@ public class EnemyAttack{
 }
 
 /*
-for (Attack bullet : bullets) {
-                bullet.setPosy(bullet.getPosy() - 1);
-                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
-                for (Enemy e : enemies) {
-                    if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
-                        e.setState(EnemyState.HIT);
-                        System.out.println("träff: " + e.isNormal() + e.isHit() + e.isDestroyed());
-                        //enemiesToRemove.add(e);
-                        bulletsToRemove.add(bullet);
-
-
-                        player.setScore(player.getScore() +10);
-                        if (player.getScore()% 200==0) {
-                            setlvl -= 30;
+for (EnemyAttack Ebullet : ebullets) {
+                Ebullet.setPy(ebullet.getPy() + 1);
+                screen.setCharacter(ebullet.getPx(), bullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(RED));
+                for (Player p : player) {
+                    if (ebullet.getPx() == p.getX() && bullet.getPy() == p.getY()) {
+                        p.setState(PlayerState.HIT);
+                        System.out.println("träff: " + p.isNormal() + p.isHit() + p.isDestroyed());
+                        player.remove;
                         }
                     }
                 }
-                enemies.removeAll(enemiesToRemove);
+               player.removeAll(playerToRemove);
 
             }
-            bullets.removeAll(bulletsToRemove);
+            ebullets.removeAll(ebulletsToRemove);
 
  */

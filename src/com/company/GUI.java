@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
+import static com.googlecode.lanterna.TextColor.ANSI.RED;
 import static com.googlecode.lanterna.TextColor.ANSI.YELLOW;
 
 public class GUI implements UI{
@@ -115,6 +116,20 @@ public class GUI implements UI{
                 }
                 enemies.removeAll(enemiesToRemove);
             }
+            /*{  List<Player> ToRemove = new ArrayList<>();
+
+                for (Attack bullet: bullets) {
+                    bullet.setYint(bullet.getYint()-1);
+                    screen.setCharacter(bullet.getX(),bullet.getYint(), new TextCharacter(bullet.getBullet()).withForegroundColor(RED));
+                    for(Player p: player) {
+                        if(bullet.getX() == p.getX() && bullet.getYint() == p.getPosy()) {
+                            playerToRemove.add(p);
+                            enemies.setScore(enemies.getScore() +3);
+            }
+                    }
+                    player.removeAll(playerToRemove);
+                }*/
+
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }

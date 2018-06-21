@@ -56,36 +56,7 @@ public class Attack{
 
    /*
 
-   char bullet = ‘\u05C0’
 
-   Initiering:
-   Bullet initieras på skärmen varje gång spelaren trycker på mellanslag.
-
-   Initierings Pos:
-   bullet x = (get.gamerpos.x),
-   bullet y = (get.gamerpos.y)-1.
-       System.out.print(bullet x, bullet y).
-
-
-   Bullet Movement = bullet x, bullet y-1.
-
-
-   If (träff):
-       Bullet pos == Enemy Pos
-           bullet U+05C0 = U+0489.
-               System.out.print(bullet)
-
-        If bullet = U+0489
-           then bullet = U+0488.
-               System.out.print (bullet)
-
-           If bullet = U+0488
-               System.out.print(“DEAD”.
-
-
-   Else If (! träff):
-       bullet pos = (get.gamerpos.x,  y, -1)
-           bullet = dead.
 
 
     */

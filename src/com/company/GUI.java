@@ -78,10 +78,14 @@ public class GUI implements UI{
                 }
                 TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
-                if (f.getYint() == 23){
+                if (player.getLife() > 0) {
+                    if (f.getYint() == 23) {
+                        player.setLife(player.getLife() -1);
+                    }
+                } else {
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
-                    runs=false;
+                    runs = false;
                 }
             }
 

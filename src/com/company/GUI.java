@@ -103,7 +103,6 @@ public class GUI implements UI {
             }
 
             enemies.removeAll(enemiesRemoveBottom);
-
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
@@ -136,6 +135,7 @@ public class GUI implements UI {
                     }
                 }
                 enemies.removeAll(enemiesToRemove);
+
             }
             bullets.removeAll(bulletsToRemove);
             /*{  List<Player> ToRemove = new ArrayList<>();

@@ -53,13 +53,9 @@ for (EnemyAttack Ebullet : ebullets) {
                     if (ebullet.getPx() == p.getX() && bullet.getPy() == p.getY()) {
                         p.setState(PlayerState.HIT);
                         System.out.println("träff: " + p.isNormal() + p.isHit() + p.isDestroyed());
-                        player.remove;
                         }
                     }
                 }
-               player.removeAll(playerToRemove);
 
-            }
-            ebullets.removeAll(ebulletsToRemove);
 
  */

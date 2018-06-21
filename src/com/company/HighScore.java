@@ -22,7 +22,7 @@ public class HighScore {
     }
     public void printToFile(int score, String name) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
-        pw.println(score + " - " + name);
+        pw.println(name + " - " + score);
         pw.close();
     }
 

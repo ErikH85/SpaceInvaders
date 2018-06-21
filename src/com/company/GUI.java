@@ -77,7 +77,6 @@ public class GUI implements UI {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
             }
 
-
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;
@@ -102,7 +101,6 @@ public class GUI implements UI {
             }
 
             enemies.removeAll(enemiesRemoveBottom);
-
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
@@ -135,6 +133,7 @@ public class GUI implements UI {
                     }
                 }
                 enemies.removeAll(enemiesToRemove);
+
             }
             bullets.removeAll(bulletsToRemove);
             /*{  List<Player> ToRemove = new ArrayList<>();

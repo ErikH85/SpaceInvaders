@@ -11,6 +11,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class GUI implements UI {
 
         HighScore hs = new HighScore();
         hs.chooseFile();
+        player.setName(JOptionPane.showInputDialog("Vad heter du?"));
 
         while (runs) {
             screen.clear();
@@ -104,8 +106,8 @@ public class GUI implements UI {
                     tGraph.putString(35, 10, "Game Over");
                     tGraph.putString(34, 12, "HIGH SCORE:");
                     tGraph.putString(34, 13, "1. " + highScore);
-                    tGraph.putString(34, 14, "2. ");
-                    tGraph.putString(34, 15, "3. ");
+                    tGraph.putString(34, 14, "2. " + highScore);
+                    tGraph.putString(34, 15, "3. " + highScore);
                     tGraph.putString(34, 17, "YOUR SCORE:");
                     tGraph.putString(34, 18, "" + player.getScore());
                     runs = false;
@@ -180,8 +182,7 @@ public class GUI implements UI {
             TimeUnit.MILLISECONDS.sleep(33);
         }
 
-        hs.printToFile(player.getScore());
-
+        hs.printToFile(player.getScore(), player.getName());
         /* screen.clear();
         Attack bullet = new Attack(int posx, int posy);
         KeyStroke keyPressed;

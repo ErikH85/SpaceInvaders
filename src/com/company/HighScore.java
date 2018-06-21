@@ -20,17 +20,18 @@ public class HighScore {
             System.out.println("No file was chosen");
         }
     }
-    public void printToFile(int score) throws IOException {
+    public void printToFile(int score, String name) throws IOException {
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
-        pw.println(score);
+        pw.println(score + " - " + name);
         pw.close();
     }
 
     public String readFile() throws IOException {
         Scanner sc = new Scanner(new File(fileName));
+
         String s = "";
         while(sc.hasNext()){
-            s = s + sc.nextLine();
+            s = sc.nextLine();
         }
         sc.close();
         return s;

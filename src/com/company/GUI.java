@@ -84,7 +84,6 @@ public class GUI implements UI {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
             }
 
-
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;
@@ -96,14 +95,20 @@ public class GUI implements UI {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
                 } else if (player.getLife() == 0) {
+                    screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
+                    tGraph.putString(34, 12, "HIGH SCORE:");
+                    tGraph.putString(34, 13, "1. ");
+                    tGraph.putString(34, 14, "2. ");
+                    tGraph.putString(34, 15, "3. ");
+                    tGraph.putString(34, 17, "YOUR SCORE:");
+                    tGraph.putString(34, 18, "" + player.getScore());
                     runs = false;
                 }
             }
 
             enemies.removeAll(enemiesRemoveBottom);
-
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
@@ -139,6 +144,7 @@ public class GUI implements UI {
                     }
                 }
                 enemies.removeAll(enemiesToRemove);
+
             }
             bullets.removeAll(bulletsToRemove);
             /*{  List<Player> ToRemove = new ArrayList<>();

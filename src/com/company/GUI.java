@@ -95,6 +95,8 @@ public class GUI implements UI {
                     tGraph.putString(34, 13, "1. ");
                     tGraph.putString(34, 14, "2. ");
                     tGraph.putString(34, 15, "3. ");
+                    tGraph.putString(34, 17, "YOUR SCORE:");
+                    tGraph.putString(34, 18, "" + player.getScore());
                     runs = false;
                 }
             }

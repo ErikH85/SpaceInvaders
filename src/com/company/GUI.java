@@ -55,9 +55,10 @@ public class GUI implements UI{
         List<Enemy> enemies = new ArrayList<>();
         Random r = new Random();
         for (int i = 0; i < 8; i++) {
-            enemies.add(new Enemy(r.nextInt(size.getColumns()-1),0));
+            enemies.add(new Enemy(r.nextInt(size.getColumns()-2)+1,1));
         }
         boolean runs=true;
+
 
         while(runs){
             screen.clear();
@@ -68,8 +69,9 @@ public class GUI implements UI{
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
             if(r.nextInt(1000) > 980) {
-                enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
+                enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
             }
+
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;

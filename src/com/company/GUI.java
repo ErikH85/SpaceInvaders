@@ -178,6 +178,6 @@ public class GUI implements UI {
         }
 
         hs.printToFile(player.getScore(), player.getName());
-       
+
     }
 }

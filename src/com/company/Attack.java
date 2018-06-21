@@ -41,24 +41,6 @@ public class Attack{
         return posy;
     }
 
-    /*posx = player.getX;
-   posy = (player.getY)-1;
-   System.out.print(posx,posy);
-
-
-   (posx, posy);
-
-   int move = posx, posy -1.
-
-
-
-
-
-   /*
-
-
-
-
-    */
+   
 
 }

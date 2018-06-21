@@ -45,17 +45,3 @@ public class EnemyAttack{
 
 }
 
-/*
-for (EnemyAttack Ebullet : ebullets) {
-                Ebullet.setPy(ebullet.getPy() + 1);
-                screen.setCharacter(ebullet.getPx(), bullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(RED));
-                for (Player p : player) {
-                    if (ebullet.getPx() == p.getX() && bullet.getPy() == p.getY()) {
-                        p.setState(PlayerState.HIT);
-                        System.out.println("träff: " + p.isNormal() + p.isHit() + p.isDestroyed());
-                        }
-                    }
-                }
-
-
- */

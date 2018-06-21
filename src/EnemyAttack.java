@@ -24,7 +24,7 @@ public class EnemyAttack{
         this.py = py;
     }
 
-    public Attack(int px, int py) {             //constructor
+    public EnemyAttack(int px, int py) {             //constructor
         this.px = px;
         this.py = py;
     }

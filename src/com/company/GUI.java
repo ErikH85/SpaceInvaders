@@ -64,6 +64,9 @@ public class GUI implements UI {
 
         List<Enemy> enemiesToRemove = new ArrayList<>();
 
+        HighScore hs = new HighScore();
+        hs.chooseFile();
+
         while (runs) {
             screen.clear();
 
@@ -176,6 +179,7 @@ public class GUI implements UI {
             TimeUnit.MILLISECONDS.sleep(33);
         }
 
+        hs.printToFile(player.getScore());
 
         /* screen.clear();
         Attack bullet = new Attack(int posx, int posy);

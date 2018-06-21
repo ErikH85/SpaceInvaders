@@ -171,43 +171,13 @@ public class GUI implements UI {
 
             }
             bullets.removeAll(bulletsToRemove);
-            /*{  List<Player> ToRemove = new ArrayList<>();
-            /*{
 
-            Enemy ska ha bullets.
-            Enemy ska kunna skjuta bullets.
-            Enemy ska skjuta en åt gången med lagom intervall.
-            Vilken enemy som ska skjuta avgörs genom random rand.
-            Enemys bullets ska vara RED.
-            Om enemy bullets pos = player = player (!alive)
-
-
-            List<Player> ToRemove = new ArrayList<>();
-
-                for (Attack bullet: bullets) {
-                    bullet.setYint(bullet.getYint()-1);
-                    screen.setCharacter(bullet.getX(),bullet.getYint(), new TextCharacter(bullet.getBullet()).withForegroundColor(RED));
-                    for(Player p: player) {
-                        if(bullet.getX() == p.getX() && bullet.getYint() == p.getPosy()) {
-                            playerToRemove.add(p);
-                            enemies.setScore(enemies.getScore() +3);
-            }
-                    }
-                    player.removeAll(playerToRemove);
-                }*/
 
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }
 
         hs.printToFile(player.getScore(), player.getName());
-        /* screen.clear();
-        Attack bullet = new Attack(int posx, int posy);
-        KeyStroke keyPressed;
-
-        keyPressed = terminal.pollInput();
-
-        if {
-            screen.setpo();*/
+       
     }
 }

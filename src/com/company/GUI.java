@@ -50,6 +50,7 @@ public class GUI implements UI {
         screen.clear();
         Player player = new Player(40, 23, 10, 100, 0);
         List<Attack> bullets = new ArrayList<>();
+        List<EnemyAttack> ebullets = new ArrayList<>();
 
         KeyStroke keyPressed;
         TerminalSize size = terminal.getTerminalSize();
@@ -77,6 +78,16 @@ public class GUI implements UI {
                     enemiesToRemove.add(e);
                 }
             }
+            for (Enemy f : enemies) {
+                if (r.nextInt(1000) > 998) {
+                    ebullets.add(new EnemyAttack(f.getX(),f.getYint() +1));
+                }
+
+            }
+            for (EnemyAttack ebullet : ebullets) {
+                ebullet.setPy(ebullet.getPy() + 1);
+                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(RED));
+            }
 
             TextGraphics tGraphics = screen.newTextGraphics();
             tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
@@ -94,7 +105,7 @@ public class GUI implements UI {
                     f.y += 0.04;
                 }
                 f.changeState();
-                TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(new TextColor.RGB(255, 0, 0));
+                TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(f.getColor());
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
                 if (f.getYint() == 24 && player.getLife() > 0) {
                     enemiesRemoveBottom.add(f);

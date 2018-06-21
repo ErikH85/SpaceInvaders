@@ -57,7 +57,10 @@ public class GUI implements UI {
         for (int i = 0; i < 8; i++) {
             enemies.add(new Enemy(r.nextInt(size.getColumns()-2)+1,1));
         }
+
         boolean runs = true;
+        int setlvl = 970;
+
 
         while (runs) {
             screen.clear();
@@ -69,9 +72,10 @@ public class GUI implements UI {
 
             List<Enemy> enemiesRemoveBottom = new ArrayList<>();
 
-            if(r.nextInt(1000) > 980) {
+            if(r.nextInt(1000) > setlvl) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
             }
+
 
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
@@ -114,8 +118,13 @@ public class GUI implements UI {
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         enemiesToRemove.add(e);
-                        player.setScore(player.getScore() + 10);
+
+                        player.setScore(player.getScore() +10);
+                        if (player.getScore()% 200==0) {
+                            setlvl -= 30;
+                        }
                     }
+
                 }
                 enemies.removeAll(enemiesToRemove);
             }

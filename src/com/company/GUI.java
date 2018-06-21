@@ -76,6 +76,16 @@ public class GUI implements UI {
                     enemiesToRemove.add(e);
                 }
             }
+            for (Enemy f : enemies) {
+                if (r.nextInt(1000) > 998) {
+                    ebullets.add(new EnemyAttack(f.getX(),f.getYint() +1));
+                }
+
+            }
+            for (EnemyAttack ebullet : ebullets) {
+                ebullet.setPy(ebullet.getPy() + 1);
+                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(RED));
+            }
 
             TextGraphics tGraphics = screen.newTextGraphics();
             tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());

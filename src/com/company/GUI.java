@@ -71,6 +71,11 @@ public class GUI implements UI {
         while (runs) {
             screen.clear();
 
+            TextGraphics tGraphics = screen.newTextGraphics();
+            tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
+            tGraphics.putString(70, 1, "HP:" + player.getHp());
+            tGraphics.putString(70, 2, "Score:" + player.getScore());
+
             for (Enemy e: enemies) {
                 if(e.remove){
                     enemiesToRemove.add(e);
@@ -85,12 +90,16 @@ public class GUI implements UI {
             for (EnemyAttack ebullet : ebullets) {
                 ebullet.setPy(ebullet.getPy() + 1);
                 screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(WHITE));
+                if (ebullet.getPx() == player.getX() && ebullet.getPy() == player.getY()) {
+                    if (player.getHp() > 0) {
+                        player.setHp(player.getHp() -10);
+                    }
+                }
+                if (player.getHp() == 0) {
+                    player.setLife(player.getLife() - 1);
+                    player.setHp(player.getHp() +100);
+                }
             }
-
-            TextGraphics tGraphics = screen.newTextGraphics();
-            tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
-            tGraphics.putString(70, 1, "HP:" + player.getHp());
-            tGraphics.putString(70, 2, "Score:" + player.getScore());
 
             List<Enemy> enemiesRemoveBottom = new ArrayList<>();
 

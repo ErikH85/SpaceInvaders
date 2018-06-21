@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
 import static com.googlecode.lanterna.TextColor.ANSI.YELLOW;
 
-public class GUI implements UI{
+public class GUI implements UI {
 
     @Override
     public void runGUI() throws IOException, InterruptedException {
@@ -46,8 +46,8 @@ public class GUI implements UI{
         }
 
         screen.clear();
-        Player player = new Player(40, 23, 3, 100, 0);
-        List<Attack> bullets= new ArrayList<>();
+        Player player = new Player(40, 23, 10, 100, 0);
+        List<Attack> bullets = new ArrayList<>();
 
         KeyStroke keyPressed;
         TerminalSize size = terminal.getTerminalSize();
@@ -55,11 +55,11 @@ public class GUI implements UI{
         List<Enemy> enemies = new ArrayList<>();
         Random r = new Random();
         for (int i = 0; i < 8; i++) {
-            enemies.add(new Enemy(r.nextInt(size.getColumns()-1),0));
+            enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
         }
-        boolean runs=true;
+        boolean runs = true;
 
-        while(runs){
+        while (runs) {
             screen.clear();
 
             TextGraphics tGraphics = screen.newTextGraphics();
@@ -67,35 +67,39 @@ public class GUI implements UI{
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
-            if(r.nextInt(1000) > 980) {
+            if (r.nextInt(1000) > 980) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
             }
+
+            List<Enemy> enemiesRemoveBottom = new ArrayList<>();
+
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;
                 }
                 TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
-                if (player.getLife() > 0) {
-                    if (f.getYint() == 23) {
-                        player.setLife(player.getLife() -1);
-                    }
-                } else {
+                if (f.getYint() == 24 && player.getLife() > 0) {
+                    enemiesRemoveBottom.add(f);
+                    player.setLife(player.getLife() - 1);
+                } else if (player.getLife() == 0) {
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
                     runs = false;
                 }
             }
 
+            enemies.removeAll(enemiesRemoveBottom);
+
             keyPressed = terminal.pollInput();
             if (keyPressed != null) {
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
                     player.setX(player.getX() + 1);
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
-                    player.setX(player.getX() -1);
-                }else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' '){
-                    bullets.add(new Attack(player.getX(), player.getY()-1));
-                    bullets.add(new Attack(player.getX(), player.getY()-2));
+                    player.setX(player.getX() - 1);
+                } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
+                    bullets.add(new Attack(player.getX(), player.getY() - 1));
+                    bullets.add(new Attack(player.getX(), player.getY() - 2));
                 }
             }
 
@@ -104,13 +108,13 @@ public class GUI implements UI{
 
             List<Enemy> enemiesToRemove = new ArrayList<>();
 
-            for (Attack bullet: bullets) {
-                bullet.setPosy(bullet.getPosy()-1);
-                screen.setCharacter(bullet.getPosx(),bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
-                for(Enemy e: enemies) {
-                    if(bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
+            for (Attack bullet : bullets) {
+                bullet.setPosy(bullet.getPosy() - 1);
+                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
+                for (Enemy e : enemies) {
+                    if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         enemiesToRemove.add(e);
-                        player.setScore(player.getScore() +10);
+                        player.setScore(player.getScore() + 10);
                     }
                 }
                 enemies.removeAll(enemiesToRemove);

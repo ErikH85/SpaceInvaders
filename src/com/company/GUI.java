@@ -98,16 +98,19 @@ public class GUI implements UI{
             TextCharacter playerChar = new TextCharacter('\u25B2').withForegroundColor(GREEN);
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
+            List<Enemy> enemiesToRemove = new ArrayList<>();
+
             for (Attack bullet: bullets) {
                 bullet.setPosy(bullet.getPosy()-1);
                 screen.setCharacter(bullet.getPosx(),bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
-                /*for(Enemy e:enemies) {
-                    if(bullet.getPosx() == e.getPosx() && bullet.getPosy() == e.getPosy) {
-                        enemies.remove(e);
+                for(Enemy e: enemies) {
+                    if(bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
+                        enemiesToRemove.add(e);
+                        player.setScore(player.getScore() +10);
                     }
-                }*/
+                }
+                enemies.removeAll(enemiesToRemove);
             }
-
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }

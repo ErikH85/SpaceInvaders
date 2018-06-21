@@ -62,6 +62,8 @@ public class GUI implements UI {
         boolean runs = true;
         int setlvl = 970;
 
+        HighScore hs = new HighScore();
+        hs.chooseFile();
 
         while (runs) {
             screen.clear();
@@ -76,7 +78,6 @@ public class GUI implements UI {
             if(r.nextInt(1000) > setlvl) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
             }
-
 
             for (Enemy f : enemies) {
                 if (f.y <= size.getRows()) {
@@ -166,6 +167,7 @@ public class GUI implements UI {
             TimeUnit.MILLISECONDS.sleep(33);
         }
 
+        hs.printToFile(player.getScore());
 
         /* screen.clear();
         Attack bullet = new Attack(int posx, int posy);

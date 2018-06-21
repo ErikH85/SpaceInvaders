@@ -87,8 +87,15 @@ public class GUI implements UI {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
                 } else if (player.getLife() == 0) {
+                    screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
+                    tGraph.putString(34, 12, "HIGH SCORE:");
+                    tGraph.putString(34, 13, "1. ");
+                    tGraph.putString(34, 14, "2. ");
+                    tGraph.putString(34, 15, "3. ");
+                    tGraph.putString(34, 17, "YOUR SCORE:");
+                    tGraph.putString(34, 18, "" + player.getScore());
                     runs = false;
                 }
             }

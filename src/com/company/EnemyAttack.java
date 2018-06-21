@@ -44,3 +44,28 @@ public class EnemyAttack{
 
 
 }
+
+/*
+for (Attack bullet : bullets) {
+                bullet.setPosy(bullet.getPosy() - 1);
+                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
+                for (Enemy e : enemies) {
+                    if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
+                        e.setState(EnemyState.HIT);
+                        System.out.println("träff: " + e.isNormal() + e.isHit() + e.isDestroyed());
+                        //enemiesToRemove.add(e);
+                        bulletsToRemove.add(bullet);
+
+
+                        player.setScore(player.getScore() +10);
+                        if (player.getScore()% 200==0) {
+                            setlvl -= 30;
+                        }
+                    }
+                }
+                enemies.removeAll(enemiesToRemove);
+
+            }
+            bullets.removeAll(bulletsToRemove);
+
+ */

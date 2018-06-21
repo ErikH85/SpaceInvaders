@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import static com.googlecode.lanterna.TextColor.ANSI.GREEN;
 import static com.googlecode.lanterna.TextColor.ANSI.YELLOW;
 
-public class GUI implements UI{
+public class GUI implements UI {
 
     @Override
     public void runGUI() throws IOException, InterruptedException {
@@ -47,7 +47,7 @@ public class GUI implements UI{
 
         screen.clear();
         Player player = new Player(40, 23, 3, 100, 0);
-        List<Attack> bullets= new ArrayList<>();
+        List<Attack> bullets = new ArrayList<>();
 
         KeyStroke keyPressed;
         TerminalSize size = terminal.getTerminalSize();
@@ -55,11 +55,11 @@ public class GUI implements UI{
         List<Enemy> enemies = new ArrayList<>();
         Random r = new Random();
         for (int i = 0; i < 8; i++) {
-            enemies.add(new Enemy(r.nextInt(size.getColumns()-1),0));
+            enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
         }
-        boolean runs=true;
+        boolean runs = true;
 
-        while(runs){
+        while (runs) {
             screen.clear();
 
             TextGraphics tGraphics = screen.newTextGraphics();
@@ -67,7 +67,7 @@ public class GUI implements UI{
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
-            if(r.nextInt(1000) > 980) {
+            if (r.nextInt(1000) > 980) {
                 enemies.add(new Enemy(r.nextInt(size.getColumns() - 1), 0));
             }
             for (Enemy f : enemies) {
@@ -76,10 +76,10 @@ public class GUI implements UI{
                 }
                 TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
-                if (f.getYint() == 23){
+                if (f.getYint() == 23) {
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
-                    runs=false;
+                    runs = false;
                 }
             }
 
@@ -88,29 +88,29 @@ public class GUI implements UI{
                 if (keyPressed.getKeyType() == KeyType.ArrowRight) {
                     player.setX(player.getX() + 1);
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
-                    player.setX(player.getX() -1);
-                }else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' '){
-                    bullets.add(new Attack(player.getX(), player.getY()-1));
-                    bullets.add(new Attack(player.getX(), player.getY()-2));
+                    player.setX(player.getX() - 1);
+                } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
+                    bullets.add(new Attack(player.getX(), player.getY() - 1));
+                    bullets.add(new Attack(player.getX(), player.getY() - 2));
                 }
             }
 
             TextCharacter playerChar = new TextCharacter('\u25B2').withForegroundColor(GREEN);
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
-            for (Attack bullet: bullets) {
-                bullet.setPosy(bullet.getPosy()-1);
-                screen.setCharacter(bullet.getPosx(),bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
-                /*for(Enemy e:enemies) {
-                    if(bullet.getPosx() == e.getPosx() && bullet.getPosy() == e.getPosy) {
+            for (Attack bullet : bullets) {
+                bullet.setPosy(bullet.getPosy() - 1);
+                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
+                for (Enemy e : enemies) {
+                    if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         enemies.remove(e);
                     }
-                }*/
-            }
 
-            screen.refresh();
-            TimeUnit.MILLISECONDS.sleep(33);
-        }
+                }
+
+                screen.refresh();
+                TimeUnit.MILLISECONDS.sleep(33);
+            }
 
 
         /* screen.clear();
@@ -121,5 +121,6 @@ public class GUI implements UI{
 
         if {
             screen.setpo();*/
+        }
     }
 }

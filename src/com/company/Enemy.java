@@ -7,40 +7,59 @@ public class Enemy {
     int x;
     double y;
     int hp;
+    boolean remove = false;
+    char shape = '▼';
 
 
     private boolean normal;
     private boolean hit;
     private boolean destroyed;
 
-    private enum AvailableStates{
+    /*public enum AvailableStates {
         NORMAL,
         HIT,
         DESTROYED;
-    }
+    }*/
 
-    AvailableStates state = AvailableStates.NORMAL;
+    EnemyState state = EnemyState.NORMAL;
 
     public void changeState(){
         switch (state) {
             case NORMAL:
-                state = AvailableStates.HIT;
+                state = EnemyState.NORMAL;
                 normal = true;
                 hit = false;
                 destroyed = false;
                 break;
             case HIT:
-                state = AvailableStates.DESTROYED;
+                state = EnemyState.DESTROYED;
                 normal = false;
                 hit = true;
                 destroyed = false;
+                shape = '҉';
                 break;
             case DESTROYED:
                 normal = false;
                 hit = false;
                 destroyed = true;
+                remove = true;
+                shape = '҈';
                 break;
         }
+    }
+
+    /*
+     U+0F36
+     0480
+
+     */
+
+    public char getShape() {
+        return this.shape;
+    }
+
+    public void setState(EnemyState state) {
+        this.state = state;
     }
 
     public boolean isNormal() {

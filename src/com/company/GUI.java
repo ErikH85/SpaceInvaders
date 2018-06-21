@@ -62,9 +62,16 @@ public class GUI implements UI {
         boolean runs = true;
         int setlvl = 970;
 
+        List<Enemy> enemiesToRemove = new ArrayList<>();
 
         while (runs) {
             screen.clear();
+
+            for (Enemy e: enemies) {
+                if(e.remove){
+                    enemiesToRemove.add(e);
+                }
+            }
 
             TextGraphics tGraphics = screen.newTextGraphics();
             tGraphics.putString(70, 0, "\u25B2 x" + player.getLife());
@@ -82,7 +89,8 @@ public class GUI implements UI {
                 if (f.y <= size.getRows()) {
                     f.y += 0.04;
                 }
-                TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
+                f.changeState();
+                TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
                 if (f.getYint() == 24 && player.getLife() > 0) {
                     enemiesRemoveBottom.add(f);
@@ -110,7 +118,7 @@ public class GUI implements UI {
             TextCharacter playerChar = new TextCharacter('\u25B2').withForegroundColor(GREEN);
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
-            List<Enemy> enemiesToRemove = new ArrayList<>();
+
             List<Attack> bulletsToRemove = new ArrayList<>();
 
             for (Attack bullet : bullets) {
@@ -118,8 +126,11 @@ public class GUI implements UI {
                 screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
-                        enemiesToRemove.add(e);
+                        e.setState(EnemyState.HIT);
+                        System.out.println("träff: " + e.isNormal() + e.isHit() + e.isDestroyed());
+                        //enemiesToRemove.add(e);
                         bulletsToRemove.add(bullet);
+
 
                         player.setScore(player.getScore() +10);
                         if (player.getScore()% 200==0) {

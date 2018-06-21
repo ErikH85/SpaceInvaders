@@ -93,7 +93,7 @@ public class GUI implements UI {
                     f.y += 0.04;
                 }
                 f.changeState();
-                TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(new TextColor.RGB(255, 0, 0));
+                TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(f.getColor());
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
                 if (f.getYint() == 24 && player.getLife() > 0) {
                     enemiesRemoveBottom.add(f);

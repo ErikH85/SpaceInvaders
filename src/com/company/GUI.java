@@ -104,7 +104,6 @@ public class GUI implements UI {
                     player.setX(player.getX() - 1);
                 } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
                     bullets.add(new Attack(player.getX(), player.getY() - 1));
-                    bullets.add(new Attack(player.getX(), player.getY() - 2));
                 }
             }
 
@@ -112,6 +111,7 @@ public class GUI implements UI {
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
             List<Enemy> enemiesToRemove = new ArrayList<>();
+            List<Attack> bulletsToRemove = new ArrayList<>();
 
             for (Attack bullet : bullets) {
                 bullet.setPosy(bullet.getPosy() - 1);
@@ -119,6 +119,7 @@ public class GUI implements UI {
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         enemiesToRemove.add(e);
+                        bulletsToRemove.add(bullet);
 
                         player.setScore(player.getScore() +10);
                         if (player.getScore()% 200==0) {
@@ -129,6 +130,7 @@ public class GUI implements UI {
                 }
                 enemies.removeAll(enemiesToRemove);
             }
+            bullets.removeAll(bulletsToRemove);
             /*{  List<Player> ToRemove = new ArrayList<>();
 
                 for (Attack bullet: bullets) {

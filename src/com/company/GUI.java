@@ -126,7 +126,6 @@ public class GUI implements UI {
                             setlvl -= 30;
                         }
                     }
-
                 }
                 enemies.removeAll(enemiesToRemove);
             }

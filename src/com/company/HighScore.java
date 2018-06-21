@@ -1,10 +1,8 @@
 package com.company;
 
 import javax.swing.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Scanner;
 
 public class HighScore {
 
@@ -27,4 +25,15 @@ public class HighScore {
         pw.println(score);
         pw.close();
     }
+
+    public String readFile() throws IOException {
+        Scanner sc = new Scanner(new File(fileName));
+        String s = "";
+        while(sc.hasNext()){
+            s = s + sc.nextLine();
+        }
+        sc.close();
+        return s;
+    }
+
 }

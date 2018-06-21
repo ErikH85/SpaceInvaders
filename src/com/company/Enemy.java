@@ -3,13 +3,21 @@
 package com.company;
 
 
+import com.googlecode.lanterna.TextColor;
+
 public class Enemy {
     int x;
     double y;
     int hp;
     boolean remove = false;
     char shape = '▼';
+    TextColor color;
 
+
+    /*
+    lägga till färgskiftningar för fiender
+    med hjälp av en variabel för färg som hämtas ur Enemyklassen
+     */
 
     private boolean normal;
     private boolean hit;
@@ -30,6 +38,7 @@ public class Enemy {
                 normal = true;
                 hit = false;
                 destroyed = false;
+                color = new TextColor.RGB(255,0,0);
                 break;
             case HIT:
                 state = EnemyState.DESTROYED;
@@ -37,6 +46,7 @@ public class Enemy {
                 hit = true;
                 destroyed = false;
                 shape = '҉';
+                color = new TextColor.RGB(255,255,0);
                 break;
             case DESTROYED:
                 normal = false;
@@ -44,6 +54,7 @@ public class Enemy {
                 destroyed = true;
                 remove = true;
                 shape = '҈';
+                color = new TextColor.RGB(255,140,0);
                 break;
         }
     }
@@ -53,6 +64,9 @@ public class Enemy {
      0480
 
      */
+    public TextColor getColor(){
+        return color;
+    }
 
     public char getShape() {
         return this.shape;

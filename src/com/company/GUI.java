@@ -163,7 +163,7 @@ public class GUI implements UI {
 
                         player.setScore(player.getScore() +10);
                         if (player.getScore()% 200==0) {
-                            setlvl -= 5;
+                            setlvl -= 4;
                         }
                     }
                 }

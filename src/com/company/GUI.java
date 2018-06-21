@@ -76,15 +76,13 @@ public class GUI implements UI {
                 }
                 TextCharacter enemy = new TextCharacter('▼').withForegroundColor(new TextColor.RGB(255, 0, 0));
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
-<<<<<<< HEAD
+
                 if (player.getLife() > 0) {
                     if (f.getYint() == 23) {
                         player.setLife(player.getLife() -1);
                     }
                 } else {
-=======
                 if (f.getYint() == 23) {
->>>>>>> 51822863345cd68c86620c0df8819d45984e8853
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
                     runs = false;
@@ -106,7 +104,6 @@ public class GUI implements UI {
             TextCharacter playerChar = new TextCharacter('\u25B2').withForegroundColor(GREEN);
             screen.setCharacter(player.getX(), player.getY(), playerChar);
 
-<<<<<<< HEAD
             for (Attack bullet : bullets) {
                 bullet.setPosy(bullet.getPosy() - 1);
                 screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
@@ -120,7 +117,7 @@ public class GUI implements UI {
                 screen.refresh();
                 TimeUnit.MILLISECONDS.sleep(33);
             }
-=======
+
             List<Enemy> enemiesToRemove = new ArrayList<>();
 
             for (Attack bullet: bullets) {
@@ -137,7 +134,6 @@ public class GUI implements UI {
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }
->>>>>>> 2ebf34e472cc473a19fb2676fc9a211e54d4e63f
 
 
         /* screen.clear();

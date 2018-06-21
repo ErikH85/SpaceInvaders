@@ -89,7 +89,7 @@ public class GUI implements UI {
             }
             for (EnemyAttack ebullet : ebullets) {
                 ebullet.setPy(ebullet.getPy() + 1);
-                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(WHITE));
+                screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(YELLOW));
                 if (ebullet.getPx() == player.getX() && ebullet.getPy() == player.getY()) {
                     if (player.getHp() > 0) {
                         player.setHp(player.getHp() -10);
@@ -141,6 +141,8 @@ public class GUI implements UI {
                     player.setX(player.getX() - 1);
                 } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
                     bullets.add(new Attack(player.getX(), player.getY() - 1));
+                } else if (keyPressed.getKeyType() == KeyType.Escape){
+                    System.exit(0);
                 }
             }
 
@@ -152,7 +154,8 @@ public class GUI implements UI {
 
             for (Attack bullet : bullets) {
                 bullet.setPosy(bullet.getPosy() - 1);
-                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(YELLOW));
+                TextColor textColor = new TextColor.RGB(r.nextInt(255),r.nextInt(255),r.nextInt(255));
+                screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(textColor));
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         e.setState(EnemyState.HIT);

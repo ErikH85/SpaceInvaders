@@ -118,6 +118,10 @@ public class GUI implements UI {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
                 } else if (player.getLife() == 0) {
+                    if (!hs.isScoreAdded()) {
+                        hs.setScoreAdded(true);
+                        hs.printToFile(player.getScore(), player.getName());
+                    }
                     String highScore = hs.readFile();
                     screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
@@ -179,12 +183,8 @@ public class GUI implements UI {
             }
             bullets.removeAll(bulletsToRemove);
 
-
             screen.refresh();
             TimeUnit.MILLISECONDS.sleep(33);
         }
-
-        hs.printToFile(player.getScore(), player.getName());
-
     }
 }

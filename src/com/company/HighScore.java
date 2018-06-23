@@ -6,7 +6,16 @@ import java.util.Scanner;
 
 public class HighScore {
 
-    String fileName;
+    private String fileName;
+    private boolean scoreAdded = false;
+
+    public boolean isScoreAdded() {
+        return scoreAdded;
+    }
+
+    public void setScoreAdded(boolean scoreAdded) {
+        this.scoreAdded = scoreAdded;
+    }
 
     public HighScore() {
     }

@@ -110,7 +110,7 @@ public class GUI implements UI {
                 screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(YELLOW));
                 if (ebullet.getPx() == player.getX() && ebullet.getPy() == player.getY()) {
                     if (player.getHp() > 0) {
-                        player.setHp(player.getHp() - 10);
+                        player.setHp(player.getHp() - 25);
                     }
                 }
                 if (player.getHp() == 0) {

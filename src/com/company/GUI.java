@@ -13,6 +13,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,7 @@ import static com.googlecode.lanterna.TextColor.ANSI.*;
 public class GUI implements UI {
 
     @Override
-    public void runGUI() throws IOException, InterruptedException {
+    public void runGUI() throws IOException, InterruptedException, LineUnavailableException, UnsupportedAudioFileException {
         Terminal terminal = null;
         try {
             terminal = new DefaultTerminalFactory().createTerminal();
@@ -75,16 +77,14 @@ public class GUI implements UI {
         Boss b = new Boss(r.nextInt(size.getColumns()-2)+1,1,500);
         enemies.add(b);
         */
-        try
-        {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File("./src/musik.wav")));
-            clip.start();
-        }
-    catch (Exception exc)
-        {
-            exc.printStackTrace(System.out);
-        }
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File("./src/musik.wav")));
+                clip.start();
+                clip.loop(1000);
+            } catch (Exception exc) {
+                exc.printStackTrace(System.out);
+            }
 
         while (runs) {
             screen.clear();
@@ -175,6 +175,9 @@ public class GUI implements UI {
                     player.setX(player.getX() - 1);
                 } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
                     bullets.add(new Attack(player.getX(), player.getY()));
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(AudioSystem.getAudioInputStream(new File("./src/laser.wav")));
+                    clip.start();
                 } else if (keyPressed.getKeyType() == KeyType.Escape){
                     System.exit(0);
                 }

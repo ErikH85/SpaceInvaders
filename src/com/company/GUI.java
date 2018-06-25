@@ -201,7 +201,7 @@ public class GUI implements UI {
 
             }
             if(addBoss){
-                enemies.add(new Boss(r.nextInt(size.getColumns()-2)+1,1,500));
+                enemies.add(new Boss(r.nextInt(size.getColumns()-2)+1,1,1000));
             }
             bullets.removeAll(bulletsToRemove);
 

@@ -191,7 +191,7 @@ public class GUI implements UI {
                         if (player.getScore()% 200==0) {
                             setlvl -= 4;
                         }
-                        if (player.getScore()% 50==0){
+                        if (player.getScore()% 300==0){
                             addBoss = true;
                         }
 

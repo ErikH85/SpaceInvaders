@@ -7,7 +7,8 @@ public class Boss extends Enemy {
 
     public Boss(int x, double y, int hp) {
         super(x, y, hp);
-        super.setShape('ʘ');
+        super.setShape('\u06DD');
+        super.setColor(new TextColor.RGB(0,0,255));
     }
 
     @Override
@@ -15,6 +16,21 @@ public class Boss extends Enemy {
         super.setY(super.getY() + 0.1);
     }
 
+    @Override
+    public void changeState() {
+        super.changeState();
+        switch (state) {
+            case NORMAL:
+                super.setColor(new TextColor.RGB(0,0,250));
+                break;
+            case HIT:
+                super.setColor(new TextColor.RGB(255,255,0));
+                break;
+            case DESTROYED:
+                super.setColor(new TextColor.RGB(255,140,0));
+                break;
+        }
+    }
 
     /*
     private int x;

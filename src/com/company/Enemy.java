@@ -68,6 +68,10 @@ public class Enemy {
         return color;
     }
 
+    public void setColor(TextColor color) {
+        this.color = color;
+    }
+
     public char getShape() {
         return this.shape;
     }

@@ -32,7 +32,7 @@ public class HighScore {
         }
     }
     public List<String> sortList(List<String> hsList) {
-        Collections.sort(hsList, new Comparator<>() {
+        Collections.sort(hsList, new Comparator<String>() {
             public int compare(String o1, String o2) {
                 return extractInt(o1) - extractInt(o2);
             }

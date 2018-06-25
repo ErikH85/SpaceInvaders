@@ -60,7 +60,7 @@ public class GUI implements UI {
         }
 
         boolean runs = true;
-        int setlvl = 970;
+        int setlvl = 975;
 
         List<Enemy> enemiesToRemove = new ArrayList<>();
 

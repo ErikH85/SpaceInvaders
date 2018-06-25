@@ -172,8 +172,6 @@ public class GUI implements UI {
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
                         e.setState(EnemyState.HIT);
-                        System.out.println("träff: " + e.isNormal() + e.isHit() + e.isDestroyed());
-                        //enemiesToRemove.add(e);
                         bulletsToRemove.add(bullet);
 
 

@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -66,7 +65,7 @@ public class GUI implements UI {
         List<Enemy> enemiesToRemove = new ArrayList<>();
 
         HighScore hs = new HighScore();
-        hs.chooseFile();
+
         player.setName(JOptionPane.showInputDialog("Vad heter du?"));
 
         /*
@@ -126,6 +125,7 @@ public class GUI implements UI {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
                 } else if (player.getLife() == 0) {
+                    player.setPlayerAlive(false);
                     if (!hs.isScoreAdded()) {
                         hs.setScoreAdded(true);
                         List<String> highScore = hs.readFile();
@@ -134,7 +134,6 @@ public class GUI implements UI {
                         hs.printToFile(highScore);
                     }
                     List<String> highScore = hs.readFile();
-
                     screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
@@ -142,8 +141,10 @@ public class GUI implements UI {
                     tGraph.putString(34, 13, "1. " + highScore.get(0));
                     tGraph.putString(34, 14, "2. " + highScore.get(1));
                     tGraph.putString(34, 15, "3. " + highScore.get(2));
-                    tGraph.putString(34, 17, "YOUR SCORE:");
-                    tGraph.putString(34, 18, "" + player.getScore());
+                    tGraph.putString(34, 16, "4. " + highScore.get(3));
+                    tGraph.putString(34, 17, "5. " + highScore.get(4));
+                    tGraph.putString(34, 19, "YOUR SCORE:");
+                    tGraph.putString(34, 20, "" + player.getScore());
                     runs = false;
                 }
             }
@@ -160,7 +161,7 @@ public class GUI implements UI {
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
                     player.setX(player.getX() - 1);
                 } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
-                    bullets.add(new Attack(player.getX(), player.getY() - 1));
+                    bullets.add(new Attack(player.getX(), player.getY()));
                 } else if (keyPressed.getKeyType() == KeyType.Escape){
                     System.exit(0);
                 }

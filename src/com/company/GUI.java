@@ -204,7 +204,7 @@ public class GUI implements UI {
                         if (player.getScore()% 200==0) {
                             setlvl -= 4;
                         }
-                        if (player.getScore()% 50==0){
+                        if (player.getScore()% 300==0){
                             addBoss = true;
                         }
 
@@ -214,7 +214,7 @@ public class GUI implements UI {
 
             }
             if(addBoss){
-                enemies.add(new Boss(r.nextInt(size.getColumns()-2)+1,1,500));
+                enemies.add(new Boss(r.nextInt(size.getColumns()-2)+1,1,1000));
             }
             bullets.removeAll(bulletsToRemove);
 

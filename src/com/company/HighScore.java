@@ -1,14 +1,11 @@
 package com.company;
 
-import javafx.print.Collation;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
-public class HighScore {
+public class HighScore{
 
-    private String fileName;
+    File hsFile = new File("./src/HighScore.txt");
     private boolean scoreAdded = false;
 
     public boolean isScoreAdded() {
@@ -22,15 +19,6 @@ public class HighScore {
     public HighScore() {
     }
 
-    public void chooseFile() throws IOException {
-        JFileChooser fc = new JFileChooser();
-        int option = fc.showOpenDialog(null);
-        fileName = fc.getSelectedFile().getAbsolutePath();
-
-        if (option != JFileChooser.APPROVE_OPTION) {
-            System.out.println("No file was chosen");
-        }
-    }
     public List<String> sortList(List<String> hsList) {
         Collections.sort(hsList, new Comparator<String>() {
             public int compare(String o1, String o2) {
@@ -46,7 +34,7 @@ public class HighScore {
     }
 
     public void printToFile(List<String> hsList) throws IOException {
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, false)));
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(hsFile, false)));
         for (int i = hsList.size() -1; i >= 0; i--) {
             pw.println(hsList.get(i));
         }
@@ -55,7 +43,7 @@ public class HighScore {
 
     public List<String> readFile() throws IOException {
         List<String> hsList = new ArrayList<>();
-        Scanner sc = new Scanner(new File(fileName));
+        Scanner sc = new Scanner(hsFile);
         String s;
         while(sc.hasNext()){
             s = sc.nextLine();

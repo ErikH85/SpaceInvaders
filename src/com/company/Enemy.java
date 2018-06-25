@@ -10,7 +10,7 @@ public class Enemy {
     double y;
     int hp;
     boolean remove = false;
-    char shape = '▼';
+    char shape = 'Ӂ';
     TextColor color;
 
 

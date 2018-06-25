@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -56,7 +57,7 @@ public class GUI implements UI {
         List<Enemy> enemies = new ArrayList<>();
         Random r = new Random();
         for (int i = 0; i < 8; i++) {
-            enemies.add(new Enemy(r.nextInt(size.getColumns()-2)+1,1));
+            enemies.add(new Enemy(r.nextInt(size.getColumns() - 2) + 1, 1));
         }
 
         boolean runs = true;
@@ -76,14 +77,14 @@ public class GUI implements UI {
             tGraphics.putString(70, 1, "HP:" + player.getHp());
             tGraphics.putString(70, 2, "Score:" + player.getScore());
 
-            for (Enemy e: enemies) {
-                if(e.remove){
+            for (Enemy e : enemies) {
+                if (e.remove) {
                     enemiesToRemove.add(e);
                 }
             }
             for (Enemy f : enemies) {
                 if (r.nextInt(1000) > 997) {
-                    ebullets.add(new EnemyAttack(f.getX(),f.getYint() +1));
+                    ebullets.add(new EnemyAttack(f.getX(), f.getYint() + 1));
                 }
 
             }
@@ -92,19 +93,19 @@ public class GUI implements UI {
                 screen.setCharacter(ebullet.getPx(), ebullet.getPy(), new TextCharacter(ebullet.getEbullet()).withForegroundColor(YELLOW));
                 if (ebullet.getPx() == player.getX() && ebullet.getPy() == player.getY()) {
                     if (player.getHp() > 0) {
-                        player.setHp(player.getHp() -10);
+                        player.setHp(player.getHp() - 10);
                     }
                 }
                 if (player.getHp() == 0) {
                     player.setLife(player.getLife() - 1);
-                    player.setHp(player.getHp() +100);
+                    player.setHp(player.getHp() + 100);
                 }
             }
 
             List<Enemy> enemiesRemoveBottom = new ArrayList<>();
 
-            if(r.nextInt(1000) > setlvl) {
-                enemies.add(new Enemy(r.nextInt(size.getColumns() - 2)+1, 1));
+            if (r.nextInt(1000) > setlvl) {
+                enemies.add(new Enemy(r.nextInt(size.getColumns() - 2) + 1, 1));
             }
 
             for (Enemy f : enemies) {
@@ -120,16 +121,20 @@ public class GUI implements UI {
                 } else if (player.getLife() == 0) {
                     if (!hs.isScoreAdded()) {
                         hs.setScoreAdded(true);
-                        hs.printToFile(player.getScore(), player.getName());
+                        List<String> highScore = hs.readFile();
+                        highScore.add(player.getScore() + " - " + player.getName());
+                        highScore = hs.sortList(highScore);
+                        hs.printToFile(highScore);
                     }
-                    String highScore = hs.readFile();
+                    List<String> highScore = hs.readFile();
+
                     screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
                     tGraph.putString(35, 10, "Game Over");
                     tGraph.putString(34, 12, "HIGH SCORE:");
-                    tGraph.putString(34, 13, "1. " + highScore);
-                    tGraph.putString(34, 14, "2. " + highScore);
-                    tGraph.putString(34, 15, "3. " + highScore);
+                    tGraph.putString(34, 13, "1. " + highScore.get(0));
+                    tGraph.putString(34, 14, "2. " + highScore.get(1));
+                    tGraph.putString(34, 15, "3. " + highScore.get(2));
                     tGraph.putString(34, 17, "YOUR SCORE:");
                     tGraph.putString(34, 18, "" + player.getScore());
                     runs = false;

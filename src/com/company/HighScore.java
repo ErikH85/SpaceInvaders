@@ -1,8 +1,10 @@
 package com.company;
 
+import javafx.print.Collation;
+
 import javax.swing.*;
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class HighScore {
 
@@ -29,21 +31,38 @@ public class HighScore {
             System.out.println("No file was chosen");
         }
     }
-    public void printToFile(int score, String name) throws IOException {
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
-        pw.println(name + " - " + score);
+    public List<String> sortList(List<String> hsList) {
+        Collections.sort(hsList, new Comparator<>() {
+            public int compare(String o1, String o2) {
+                return extractInt(o1) - extractInt(o2);
+            }
+
+            int extractInt(String s) {
+                String num = s.replaceAll("\\D", "");
+                return num.isEmpty() ? 0 : Integer.parseInt(num);
+            }
+        });
+        return hsList;
+    }
+
+    public void printToFile(List<String> hsList) throws IOException {
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, false)));
+        for (int i = hsList.size() -1; i >= 0; i--) {
+            pw.println(hsList.get(i));
+        }
         pw.close();
     }
 
-    public String readFile() throws IOException {
+    public List<String> readFile() throws IOException {
+        List<String> hsList = new ArrayList<>();
         Scanner sc = new Scanner(new File(fileName));
-
-        String s = "";
+        String s;
         while(sc.hasNext()){
             s = sc.nextLine();
+            hsList.add(s);
         }
         sc.close();
-        return s;
-    }
 
+        return hsList;
+    }
 }

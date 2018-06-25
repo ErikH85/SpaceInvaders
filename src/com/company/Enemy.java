@@ -72,6 +72,7 @@ public class Enemy {
         return this.shape;
     }
 
+
     public void setState(EnemyState state) {
         this.state = state;
     }
@@ -124,6 +125,15 @@ public class Enemy {
     }
 
     public void setHp(int hp) {
+
         this.hp = hp;
+    }
+
+    public void setShape(char shape) {
+        this.shape = shape;
+    }
+
+    public void move() {
+        y += 0.04f;
     }
 }

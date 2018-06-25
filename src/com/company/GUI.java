@@ -69,6 +69,11 @@ public class GUI implements UI {
         hs.chooseFile();
         player.setName(JOptionPane.showInputDialog("Vad heter du?"));
 
+        /*
+        Boss b = new Boss(r.nextInt(size.getColumns()-2)+1,1,500);
+        enemies.add(b);
+        */
+
         while (runs) {
             screen.clear();
 
@@ -109,12 +114,14 @@ public class GUI implements UI {
             }
 
             for (Enemy f : enemies) {
-                if (f.y <= size.getRows()) {
+                /*if (f.y <= size.getRows()) {
                     f.y += 0.04;
-                }
+                }*/
+                f.move();
                 f.changeState();
                 TextCharacter enemy = new TextCharacter(f.getShape()).withForegroundColor(f.getColor());
                 screen.setCharacter(f.getX(), f.getYint(), enemy);
+
                 if (f.getYint() == 24 && player.getLife() > 0) {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
@@ -164,6 +171,7 @@ public class GUI implements UI {
 
 
             List<Attack> bulletsToRemove = new ArrayList<>();
+            boolean addBoss = false;
 
             for (Attack bullet : bullets) {
                 bullet.setPosy(bullet.getPosy() - 1);
@@ -171,18 +179,26 @@ public class GUI implements UI {
                 screen.setCharacter(bullet.getPosx(), bullet.getPosy(), new TextCharacter(bullet.getBullet()).withForegroundColor(textColor));
                 for (Enemy e : enemies) {
                     if (bullet.getPosx() == e.getX() && bullet.getPosy() == e.getYint()) {
-                        e.setState(EnemyState.HIT);
+                        e.setHp(e.getHp()-100);
+                        if(e.getHp() <= 0) {
+                            e.setState(EnemyState.HIT);
+                        }
                         bulletsToRemove.add(bullet);
 
 
                         player.setScore(player.getScore() +10);
                         if (player.getScore()% 200==0) {
                             setlvl -= 4;
+                            addBoss = true;
                         }
+
                     }
                 }
                 enemies.removeAll(enemiesToRemove);
 
+            }
+            if(addBoss){
+                enemies.add(new Boss(r.nextInt(size.getColumns()-2)+1,1,500));
             }
             bullets.removeAll(bulletsToRemove);
 

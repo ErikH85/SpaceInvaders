@@ -11,7 +11,10 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +75,16 @@ public class GUI implements UI {
         Boss b = new Boss(r.nextInt(size.getColumns()-2)+1,1,500);
         enemies.add(b);
         */
+        try
+        {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File("./src/musik.wav")));
+            clip.start();
+        }
+    catch (Exception exc)
+        {
+            exc.printStackTrace(System.out);
+        }
 
         while (runs) {
             screen.clear();

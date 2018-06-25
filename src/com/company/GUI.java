@@ -136,15 +136,15 @@ public class GUI implements UI {
                     List<String> highScore = hs.readFile();
                     screen.clear();
                     TextGraphics tGraph = screen.newTextGraphics();
-                    tGraph.putString(35, 10, "Game Over");
-                    tGraph.putString(34, 12, "HIGH SCORE:");
-                    tGraph.putString(34, 13, "1. " + highScore.get(0));
-                    tGraph.putString(34, 14, "2. " + highScore.get(1));
-                    tGraph.putString(34, 15, "3. " + highScore.get(2));
-                    tGraph.putString(34, 16, "4. " + highScore.get(3));
-                    tGraph.putString(34, 17, "5. " + highScore.get(4));
-                    tGraph.putString(34, 19, "YOUR SCORE:");
-                    tGraph.putString(34, 20, "" + player.getScore());
+                    tGraph.putString(35, 6, "Game Over");
+                    tGraph.putString(34, 8, "HIGH SCORE:");
+                    tGraph.putString(34, 9, "1. " + highScore.get(0));
+                    tGraph.putString(34, 10, "2. " + highScore.get(1));
+                    tGraph.putString(34, 11, "3. " + highScore.get(2));
+                    tGraph.putString(34, 12, "4. " + highScore.get(3));
+                    tGraph.putString(34, 13, "5. " + highScore.get(4));
+                    tGraph.putString(34, 15, "YOUR SCORE:");
+                    tGraph.putString(34, 16, "" + player.getScore());
                     runs = false;
                 }
             }

@@ -118,6 +118,7 @@ public class GUI implements UI {
                     enemiesRemoveBottom.add(f);
                     player.setLife(player.getLife() - 1);
                 } else if (player.getLife() == 0) {
+                    player.setPlayerAlive(false);
                     if (!hs.isScoreAdded()) {
                         hs.setScoreAdded(true);
                         List<String> highScore = hs.readFile();
@@ -153,7 +154,7 @@ public class GUI implements UI {
                 } else if (keyPressed.getKeyType() == KeyType.ArrowLeft) {
                     player.setX(player.getX() - 1);
                 } else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == ' ') {
-                    bullets.add(new Attack(player.getX(), player.getY() - 1));
+                    bullets.add(new Attack(player.getX(), player.getY()));
                 } else if (keyPressed.getKeyType() == KeyType.Escape){
                     System.exit(0);
                 }
